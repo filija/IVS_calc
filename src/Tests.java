@@ -62,5 +62,30 @@ public class Tests {
 		assertEquals(3125, MyMath.naEntou(5, 5), 0.1);
 		assertEquals(195.112,MyMath.naEntou(5.8, 3), 0.0001);
 	}
+	
+	@Test
+	public void testOdmocnina(){
+		System.out.println("test odmocnina");
+		assertEquals(5, MyMath.odmocnina(25), 0.1);
+		assertEquals(12, MyMath.odmocnina(144), 0.1);
+		assertEquals(12, MyMath.odmocnina(144), 0.1);
+		assertEquals(-1, MyMath.odmocnina(-5), 0.1);
+	}
+	
+	@Test
+	public void testFaktorial(){
+		System.out.println("test faktorial");
+		assertEquals("faktorial1",720, MyMath.faktorial(6));
+		assertEquals("faktorial2",3628800, MyMath.faktorial(10));
+		assertEquals("faktorial3",-1, MyMath.faktorial(-10));
+	}
+	
+	@Test
+	public void testModulo(){
+		System.out.println("test modulo");
+		assertEquals("modulo1", 1, MyMath.modulo(4, 3));
+		assertEquals("modulo2", 3, MyMath.modulo(28, 5));
+		assertEquals("modulo3", 0, MyMath.modulo(15, 5));
+	}
 
 }
