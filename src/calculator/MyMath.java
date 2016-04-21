@@ -40,6 +40,8 @@ public class MyMath{
 	
 	public static double odmocnina(double a)
 	{
+		if(a<=0)
+			return -1;
 		return Math.sqrt(a);
 	}
 	
