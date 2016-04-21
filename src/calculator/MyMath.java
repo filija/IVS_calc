@@ -47,6 +47,8 @@ public class MyMath{
 	
 	public static int faktorial(int a)
 	{
+		if(a<=0)
+			return -1;
 		int x, fact=1;
 		for(x=a; x>1; x--)
 		{
