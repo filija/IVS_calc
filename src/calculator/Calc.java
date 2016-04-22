@@ -504,10 +504,10 @@ public class Calc extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel16.setToolTipText("x^y");
+        jPanel16.setToolTipText("^");
         jPanel16.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel16MouseClicked(evt);
+                OperaceClick(evt);
             }
         });
 
@@ -802,6 +802,7 @@ public class Calc extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jTextField1.setEditable(false);
         jTextField1.setFont(new java.awt.Font("Monospaced", 0, 48)); // NOI18N
         jTextField1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTextField1.setText("0");
@@ -928,7 +929,7 @@ public class Calc extends javax.swing.JFrame {
     // stisknuto cislo/des. tecka
     private void NumberClick(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NumberClick
         javax.swing.JPanel source = (javax.swing.JPanel) evt.getSource();
-        System.out.println(source.getToolTipText()); // cislo na panelu
+        //System.out.println(source.getToolTipText()); // cislo na panelu
         
         if("0".equals(jTextField1.getText())) // pokud je nula vymazeme display
         {
@@ -955,7 +956,7 @@ public class Calc extends javax.swing.JFrame {
     
     // backspace
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
-        System.out.println("<");
+        //System.out.println("<");
         String s = jTextField1.getText();
         s = s.substring(0, s.length()-1);
         jTextField1.setText(s);
@@ -972,7 +973,7 @@ public class Calc extends javax.swing.JFrame {
 
     // delete/vynulovani
     private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
-        System.out.println("del");
+        //System.out.println("del");
         jTextField1.setText("0");
         a="";
         b="";
@@ -982,40 +983,52 @@ public class Calc extends javax.swing.JFrame {
 
     // faktorial
     private void jPanel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseClicked
-        System.out.println("n!");
+        //System.out.println("n!");
         
         int num1 = Integer.parseInt(a);
+        int res = MyMath.faktorial(num1);
         
-        jTextField1.setText(String.valueOf(MyMath.faktorial(num1)));
+        jTextField1.setText(String.valueOf(res));
+        a = String.valueOf(res); // vysledek do prvniho cisla
+        b = "";
+        zadavaneCislo = 1;
     }//GEN-LAST:event_jPanel4MouseClicked
 
     // y odmocnina
     private void jPanel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseClicked
-        System.out.println("sqrty(x)");
+        //System.out.println("sqrty(x)");
         // TODO: sqrt
     }//GEN-LAST:event_jPanel6MouseClicked
 
     // druha odmocnina
     private void jPanel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel11MouseClicked
-        System.out.println("sqrt(x)");
-        // TODO: sqrt
+        //System.out.println("sqrt(x)");
+        
+        double num1 = Double.parseDouble(a);
+        double res = MyMath.odmocnina(num1);
+        
+        jTextField1.setText(String.valueOf(res));
+        a = String.valueOf(res); // vysledek do prvniho cisla
+        b = "";
+        zadavaneCislo = 1;
     }//GEN-LAST:event_jPanel11MouseClicked
-
-    // y mocnina
-    private void jPanel16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel16MouseClicked
-        System.out.println("x^y");
-        // TODO: pow
-    }//GEN-LAST:event_jPanel16MouseClicked
 
     // 2 mocnina
     private void jPanel21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel21MouseClicked
-        System.out.println("x^2");
-        // TODO: pow
+        //System.out.println("x^2");
+        
+        double num1 = Double.parseDouble(a);
+        double res = MyMath.naDruhou(num1);
+        
+        jTextField1.setText(String.valueOf(res));
+        a = String.valueOf(res); // vysledek do prvniho cisla
+        b = "";
+        zadavaneCislo = 1;
     }//GEN-LAST:event_jPanel21MouseClicked
 
     // rovnitko/vypocet
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
-        System.out.println(a + " " + akce + " " + b + " = ");
+        //System.out.println(a + " " + akce + " " + b + " = ");
         
         Vypocitej();
     }//GEN-LAST:event_jLabel6MouseClicked
@@ -1044,9 +1057,12 @@ public class Calc extends javax.swing.JFrame {
             case "%":
                     res = MyMath.modulo((int)num1, (int)num2);
                     break;
+            case "^":
+                    res = MyMath.naEntou((int)num1, (int)num2);
+                    break;
         }
         
-        System.out.println(res);
+        //System.out.println(res);
         a = String.valueOf(res); // vysledek do prvniho cisla
         b = "";
         zadavaneCislo = 1;
@@ -1064,7 +1080,7 @@ public class Calc extends javax.swing.JFrame {
             Vypocitej();
         }
         
-        System.out.println(source.getToolTipText());
+        //System.out.println(source.getToolTipText());
         jTextField1.setText(jTextField1.getText() + source.getToolTipText());
         akce = source.getToolTipText();
         zadavaneCislo++;
