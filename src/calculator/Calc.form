@@ -314,7 +314,7 @@
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel5">
           <Properties>
-            <Property name="toolTipText" type="java.lang.String" value="mod"/>
+            <Property name="toolTipText" type="java.lang.String" value="%"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="OperaceClick"/>
@@ -357,10 +357,10 @@
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel6">
           <Properties>
-            <Property name="toolTipText" type="java.lang.String" value="nsqrt"/>
+            <Property name="toolTipText" type="java.lang.String" value="s"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanel6MouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="OperaceClick"/>
           </Events>
 
           <Layout>
@@ -811,10 +811,10 @@
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel16">
           <Properties>
-            <Property name="toolTipText" type="java.lang.String" value="x^y"/>
+            <Property name="toolTipText" type="java.lang.String" value="^"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanel16MouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="OperaceClick"/>
           </Events>
 
           <Layout>
@@ -1271,6 +1271,10 @@
             <Property name="horizontalAlignment" type="int" value="4"/>
             <Property name="text" type="java.lang.String" value="0"/>
           </Properties>
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextField1KeyReleased"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextField1KeyTyped"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

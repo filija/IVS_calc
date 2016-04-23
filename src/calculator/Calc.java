@@ -5,6 +5,8 @@
  */
 package calculator;
 
+import com.sun.glass.events.KeyEvent;
+
 /**
  *
  * @author Simek
@@ -177,7 +179,7 @@ public class Calc extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel5.setToolTipText("mod");
+        jPanel5.setToolTipText("%");
         jPanel5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 OperaceClick(evt);
@@ -206,10 +208,10 @@ public class Calc extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel6.setToolTipText("nsqrt");
+        jPanel6.setToolTipText("s");
         jPanel6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel6MouseClicked(evt);
+                OperaceClick(evt);
             }
         });
 
@@ -802,10 +804,17 @@ public class Calc extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTextField1.setEditable(false);
         jTextField1.setFont(new java.awt.Font("Monospaced", 0, 48)); // NOI18N
         jTextField1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTextField1.setText("0");
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField1KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField1KeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -961,6 +970,12 @@ public class Calc extends javax.swing.JFrame {
         s = s.substring(0, s.length()-1);
         jTextField1.setText(s);
         
+        Backspace();
+    }//GEN-LAST:event_jPanel1MouseClicked
+
+    // funkce backspace
+    private void Backspace()
+    {
         if(zadavaneCislo == 1) // mazeme prvni cislo
         {
             a = a.substring(0, a.length()-1);
@@ -969,8 +984,8 @@ public class Calc extends javax.swing.JFrame {
         {
             b = b.substring(0, b.length()-1);
         }
-    }//GEN-LAST:event_jPanel1MouseClicked
-
+    }
+    
     // delete/vynulovani
     private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
         //System.out.println("del");
@@ -993,12 +1008,6 @@ public class Calc extends javax.swing.JFrame {
         b = "";
         zadavaneCislo = 1;
     }//GEN-LAST:event_jPanel4MouseClicked
-
-    // y odmocnina
-    private void jPanel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseClicked
-        //System.out.println("sqrty(x)");
-        // TODO: sqrt
-    }//GEN-LAST:event_jPanel6MouseClicked
 
     // druha odmocnina
     private void jPanel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel11MouseClicked
@@ -1060,6 +1069,9 @@ public class Calc extends javax.swing.JFrame {
             case "^":
                     res = MyMath.naEntou((int)num1, (int)num2);
                     break;
+            case "s":
+                    // TODO: odmocnina y z x
+                    break;
         }
         
         //System.out.println(res);
@@ -1085,6 +1097,64 @@ public class Calc extends javax.swing.JFrame {
         akce = source.getToolTipText();
         zadavaneCislo++;
     }//GEN-LAST:event_OperaceClick
+
+    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+        if(evt.getKeyCode() == KeyEvent.VK_BACKSPACE)
+        {
+            Backspace();
+        }
+        else if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+        {
+            Vypocitej();
+        }
+    }//GEN-LAST:event_jTextField1KeyReleased
+
+    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+        if(Character.isDigit(evt.getKeyChar()) || evt.getKeyChar() == '.')
+        {
+            if("0".equals(jTextField1.getText())) // pokud je nula vymazeme display
+            {
+                jTextField1.setText("");
+            }
+
+            if(zadavaneCislo == 0)
+            {
+                zadavaneCislo = 1;
+            }
+
+            if(zadavaneCislo == 1) // ukladame do prvniho cisla
+            {
+                a += evt.getKeyChar();
+            }
+            else // ukladame do druheho cisla
+            {
+                b += evt.getKeyChar();
+            }
+        }
+        else
+        {
+            switch(evt.getKeyChar())
+        {
+            case '+':
+            case '-':
+            case '*':
+            case '/':
+            case '%':
+            case '^':
+            case 's':
+                if(zadavaneCislo == 2)
+                {
+                    Vypocitej();
+                }
+                akce = String.valueOf(evt.getKeyChar());
+                zadavaneCislo++;
+                break;
+            default:
+                evt.consume();
+                break;
+            }
+        }
+    }//GEN-LAST:event_jTextField1KeyTyped
 
     /**
      * @param args the command line arguments
