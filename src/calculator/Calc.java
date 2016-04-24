@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package calculator;
+
+import com.sun.glass.events.KeyEvent;
+
 /**
  *
  * @author Simek
@@ -1025,7 +1028,7 @@ public class Calc extends javax.swing.JFrame {
         
         double num1 = Double.parseDouble(a);
         double res = MyMath.naDruhou(num1);
-      
+        
         jTextField1.setText(String.valueOf(res));
         a = String.valueOf(res); // vysledek do prvniho cisla
         b = "";
@@ -1036,7 +1039,10 @@ public class Calc extends javax.swing.JFrame {
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
         //System.out.println(a + " " + akce + " " + b + " = ");
         
-        Vypocitej();
+        if(zadavaneCislo == 2)
+        {
+            Vypocitej();
+        }
     }//GEN-LAST:event_jLabel6MouseClicked
 
     // vypocet
@@ -1084,6 +1090,12 @@ public class Calc extends javax.swing.JFrame {
                                      
         javax.swing.JPanel source = (javax.swing.JPanel) evt.getSource();
         
+        if(zadavaneCislo == 0 && source.getToolTipText().equals("-"))
+        {
+            a += "-";
+            jTextField1.setText("");
+        }
+            
         if(zadavaneCislo == 2)
         {
             Vypocitej();
@@ -1095,6 +1107,7 @@ public class Calc extends javax.swing.JFrame {
         zadavaneCislo++;
     }//GEN-LAST:event_OperaceClick
 
+    // stisknuta klavesa
     private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
         if(evt.getKeyCode() == KeyEvent.VK_BACKSPACE)
         {
@@ -1102,10 +1115,13 @@ public class Calc extends javax.swing.JFrame {
         }
         else if(evt.getKeyCode() == KeyEvent.VK_ENTER)
         {
-            Vypocitej();
+            if (zadavaneCislo == 2) {
+                Vypocitej();
+            }
         }
     }//GEN-LAST:event_jTextField1KeyReleased
 
+    // stisknuta klavesa
     private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
         if(Character.isDigit(evt.getKeyChar()) || evt.getKeyChar() == '.')
         {
