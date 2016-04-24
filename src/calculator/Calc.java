@@ -4,9 +4,6 @@
  * and open the template in the editor.
  */
 package calculator;
-
-import com.sun.glass.events.KeyEvent;
-
 /**
  *
  * @author Simek
@@ -1028,7 +1025,7 @@ public class Calc extends javax.swing.JFrame {
         
         double num1 = Double.parseDouble(a);
         double res = MyMath.naDruhou(num1);
-        
+      
         jTextField1.setText(String.valueOf(res));
         a = String.valueOf(res); // vysledek do prvniho cisla
         b = "";
