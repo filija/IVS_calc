@@ -1,0 +1,4 @@
+25.4.2015 18:30 - Odevzdani kompletniho archivu na server ivs.fit.vutbr.cz
+
+INFO:
+Kompletni archiv ma navic od tohoto instalacni soubory.
