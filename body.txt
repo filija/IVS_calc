@@ -1,0 +1,4 @@
+xdenkf00 5 (makefile, instalator)
+xfilip34 5 (testy, back-end)
+xkudrn02 5 (dokumentace, prirucka)
+xsimek22 5 (uzivatelske rozhrani)
